@@ -1,3 +1,12 @@
-body{
-	padding-top: 70px;
-}
+.navbar {
+		 margin-bottom: 50px;
+		 border-radius: 0;
+	 }
+
+	 /* Remove the jumbotron's default bottom margin */
+.jumbotron {
+      margin-bottom: 0;
+      background-image: url("http://www.blitzquotidiano.it/wp/wp/wp-content/uploads/2016/09/pizza.jpg");
+      background-size: cover;
+      color:white;
+    }
