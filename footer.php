@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="it_IT">
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta charset="utf-8">
-    <title>Piotto</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    
+<?php
 
-  <div class="container">
+echo '
+<div class="container">
     <section style="height:80px;"></section>
     <!----------- Footer ------------>
     <footer class="footer-bs">
@@ -55,9 +46,7 @@
         </div>
     </footer>
 
-</div>
+</div>'
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
-</html>
+
+?>
