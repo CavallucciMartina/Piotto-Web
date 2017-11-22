@@ -13,8 +13,6 @@
      ?>
 <div class="container">
 
-
-
   <div class="row">
   	<div class="col-sm-4">
   		<h1>Piotto</h1>
