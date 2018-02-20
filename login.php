@@ -1,145 +1,135 @@
+<?php
+require 'php/db_connect.php';
+require 'php/functions.php';
+sec_session_start();
+if(login_check($mysqli) == false) {
+?>
 <!DOCTYPE html>
-<html lang="it_IT">
+<html lang="it-IT">
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="utf-8">
-    <title>Piotto</title>
+    <title>Login</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
-
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-
-        <!-- Favicon and touch icons -->
-        <link rel="shortcut icon" href="assets/ico/favicon.png">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" type="image/png" href="img/logo.png">
+    <script type="text/javascript" src="sha512.js"></script>
+    <script type="text/javascript" src="forms.js"></script>
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
+    <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>
+     <script src="js/jquery.validate.min.js"></script>
+     <script src="js/messages_it.min.js"></script>
   </head>
   <body>
     <?php
       include 'navbar.php';
     ?>
   <!-- Top content -->
-        <div class="top-content">
+  <div class="container mappa">
+                  <?php
 
-            <div class="inner-bg">
-                <div class="container">
-
+                    if(isset($_GET['error'])) {
+                        echo '<p class="text-center alert alert-danger">Autenticazione fallita, assicurati che email e password inseriti siano corretti</p><br>';
+                    } else if(isset($_GET['new']) && $_GET['new'] == 1) {
+                        echo '<p class="text-center alert alert-success">Registrazione avvenuta con successo!</p><br>';
+                    } /*else if(isset($_GET['reset']) && $_GET['reset'] == 1) {
+                        echo "<p class='text-center alert alert-success'>Ti abbiamo inviato una mail contenente un link per reimpostare la password</p><br>";
+                    } else if(isset($_GET['reset']) && $_GET['reset'] == 2) {
+                        echo "<p class='text-center alert alert-success'>Password impostata correttamente</p><br>";
+                    }
+                    */
+                    ?>
                     <div class="row">
-                        <div class="col-sm-5">
-
-                          <div class="form-box">
+                        <div class="col-md-6 col-md-offset-3">
                             <div class="form-top">
                               <div class="form-top-left">
-                                <h3>Login to our site</h3>
-
+                                <h1>Login</h1>
                               </div>
                               <div class="form-top-right">
-                                <i class="fa fa-lock"></i>
+                                <em class="fa fa-lock"></em>
                               </div>
                               </div>
                               <div class="form-bottom">
-                            <form role="form" action="" method="post" class="login-form">
+                            <form id="form" role="form" action="php/process_login.php" method="post" class="login-form">
                               <div class="form-group">
-                                <label class="sr-only" for="form-username">Username</label>
-                                  <input type="text" name="form-username" placeholder="Username..." class="form-username form-control" id="form-username">
+                                <label class="sr-only" for="email">Username</label>
+                                  <input type="text" name="email" placeholder="Email" class="form-username form-control" id="email">
                                 </div>
                                 <div class="form-group">
-                                  <label class="sr-only" for="form-password">Password</label>
-                                  <input type="password" name="form-password" placeholder="Password..." class="form-password form-control" id="form-password">
+                                  <label class="sr-only" for="password">Password</label>
+                                  <input type="password" name="password" placeholder="Password" class="form-password form-control" id="password">
                                 </div>
-                                <button type="submit" class="btn">Sign in!</button>
+                                <button type="submit" class="btn" onclick="formhash(this.form, this.form.password);">Login</button>
                             </form>
                           </div>
                         </div>
-
-                      <div class="social-login">
-                            <h3>...or login with:</h3>
-                            <div class="social-login-buttons">
-                              <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-facebook"></i> Facebook
-                              </a>
-                              <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-twitter"></i> Twitter
-                              </a>
-                              <a class="btn btn-link-2" href="#">
-                                <i class="fa fa-google-plus"></i> Google Plus
-                              </a>
-                            </div>
-                          </div>
-
                         </div>
 
-                        <div class="col-sm-1 middle-border"></div>
-                        <div class="col-sm-1"></div>
 
-                        <div class="col-sm-5">
-
-                          <div class="form-box">
-                            <div class="form-top">
-                              <div class="form-top-left">
-                                <h3>Sign up now</h3>
-
-                              </div>
-                              <div class="form-top-right">
-                                <i class="fa fa-pencil"></i>
-                              </div>
-                              </div>
-                              <div class="form-bottom">
-                            <form role="form" action="" method="post" class="registration-form">
-                              <div class="form-group">
-                                <label class="sr-only" for="form-first-name">First name</label>
-                                  <input type="text" name="form-first-name" placeholder="First name..." class="form-first-name form-control" id="form-first-name">
-                                </div>
-                                <div class="form-group">
-                                  <label class="sr-only" for="form-last-name">Last name</label>
-                                  <input type="text" name="form-last-name" placeholder="Last name..." class="form-last-name form-control" id="form-last-name">
-                                </div>
-                                <div class="form-group">
-                                  <label class="sr-only" for="form-email">Email</label>
-                                  <input type="text" name="form-email" placeholder="Email..." class="form-email form-control" id="form-email">
-                                </div>
-                                <div class="form-group">
-                                  <label class="sr-only" for="form-about-yourself">About yourself</label>
-                                  <textarea name="form-about-yourself" placeholder="About yourself..."
-                                        class="form-about-yourself form-control" id="form-about-yourself"></textarea>
-                                </div>
-                                <button type="submit" class="btn">Sign me up!</button>
-                            </form>
-                          </div>
-                          </div>
-
-                        </div>
                     </div>
+                <div>
 
+                  <div class="container text-center">
+                    <h3>Sei un nuovo cliente?</h3>
+                <a href="registration.php" class="btn btn-info" role="button">Registrati</a>
                 </div>
             </div>
-
-        </div>
 
         <!-- Footer -->
         <?php
             include 'footer.php';
         ?>
-        <!-- Javascript -->
-        <script src="assets/js/jquery-1.11.1.min.js"></script>
-        <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        <script src="assets/js/jquery.backstretch.min.js"></script>
-        <script src="assets/js/scripts.js"></script>
+    <script>
+    $( document ).ready( function () {
+      $( "#form" ).validate( {
+        rules: {
+          email: {
+            required: true,
+            email: true
+          },
+          password: {
+            required: true,
+            minlength: 6
+          }
+        },
+        messages: {
+          email: {
+            required:  "Inserisci un indirizzo email valido"
+          },
+          password: {
+            required: "Inserisci una password",
+            minlength: "Inserisci almeno 6 caratteri"
+          }
+        },
+        errorElement: "em",
+        errorPlacement: function ( error, element ) {
+          // Add the `help-block` class to the error element
+          error.addClass( "help-block" );
 
-        <!--[if lt IE 10]>
-            <script src="assets/js/placeholder.js"></script>
-        <![endif]-->
-
-</div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+          if ( element.prop( "type" ) === "checkbox" ) {
+            error.insertAfter( element.parent( "label" ) );
+          } else {
+            error.insertAfter( element );
+          }
+        },
+        highlight: function ( element, errorClass, validClass ) {
+          $( element ).parents( ".col-sm-5" ).addClass( "has-error" ).removeClass( "has-success" );
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
+        }
+      } );
+    } );
+    </script>
   </body>
 </html>
+<?php
+} else {
+ header('Location: ../utente.php');
+}
+?>

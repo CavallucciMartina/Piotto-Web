@@ -2,45 +2,39 @@
 
 echo '
 <div class="container">
-    <section style="height:80px;"></section>
     <!----------- Footer ------------>
     <footer class="footer-bs">
         <div class="row">
-          <div class="col-md-3 footer-brand animated fadeInLeft">
+          <div class="col-md-4 footer-brand animated fadeInLeft">
               <h2>Piotto</h2>
-                <p>Suspendisse hendrerit tellus laoreet luctus pharetra. Aliquam porttitor vitae orci nec ultricies. Curabitur vehicula, libero eget faucibus faucibus, purus erat eleifend enim, porta pellentesque ex mi ut sem.</p>
-                <p>© 2017 Piotto SRL, All rights reserved</p>
+                <p>Pizza e panzerotto </br>
+
+                  Piazza Fabbri, 2 - Cesena (FC)</br>
+                CAP 47521</p>
+                <p>© Copyright 2018 Piotto - Tutti i diritti riservati.</p>
             </div>
-          <div class="col-md-3 footer-nav animated fadeInUp">
-              <h4>Menu</h4>
-              <div class="col-md-6">
-                    <ul class="pages">
-                        <li><a href="#">Chi Siamo</a></li>
-                        <li><a href="#">Prodotti</a></li>
-                        <li><a href="#">Dicono di noi</a></li>
-                        <li><a href="#">Contatti</a></li>
-                    </ul>
-                </div>
+
+          <div class="col-md-4 footer-social animated fadeInDown">
+              <h4>Seguici su</h4>
+                <a target="_blank" class="btn-social btn-facebook"><i class="fa fa-facebook"></i></a>
+                <a target="_blank" class="btn-social btn-instagram"><i class="fa fa-instagram"></i></a>
+                <a target="_blank" class="btn-social btn-twitter"><i class="fa fa-twitter"></i></a>
+                <a target="_blank" class="btn-social btn-google-plus"><i class="fa fa-google-plus"></i></a>
+                <a target="_blank" class="btn-social btn-pinterest"><i class="fa fa-pinterest"></i></a>
             </div>
-          <div class="col-md-3 footer-social animated fadeInDown">
-              <h4>Seguici</h4>
-              <ul>
-                  <li><a href="#">Facebook</a></li>
-                  <li><a href="#">Twitter</a></li>
-                  <li><a href="#">Instagram</a></li>
-                  <li><a href="#">RSS</a></li>
-                </ul>
-            </div>
-          <div class="col-md-3 footer-ns animated fadeInRight">
+          <div class="col-md-4 footer-ns animated fadeInRight">
               <h4>Newsletter</h4>
                 <p>Rimani aggiornato su tutte le novità del nostro Menù!</p>
                 <p>
+                <form role="form" action="newsletter.php" method="post" class="newsletter-form">
                     <div class="input-group">
-                      <input type="text" class="form-control">
+                      <input type="email" class="form-control" name="email"  placeholder="Inserisci la tua email" id="email"required>
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button"><span class="glyphicon glyphicon-envelope"></span></button>
+                          <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-envelope"></span></button>
+
                       </span>
                     </div><!-- /input-group -->
+                    </form>
                  </p>
             </div>
         </div>
